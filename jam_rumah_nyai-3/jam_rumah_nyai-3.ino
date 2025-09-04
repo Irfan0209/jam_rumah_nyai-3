@@ -531,8 +531,8 @@ void loop() {
    }
   }else{
     handleSetTimeSerial();
-     check();
-  islam();
+    check();
+    islam();
   }
  
 

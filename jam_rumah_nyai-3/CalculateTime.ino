@@ -8,7 +8,7 @@ void islam() {
     stateBuzzWar = 1;
   }
 
-  //redup
+  /*//redup
   if(now.Hour() == 23 && now.Minute() == 00 && now.Second() == 00){
     Disp.setBrightness(10);
   }
@@ -16,7 +16,7 @@ void islam() {
   //normal
   if(now.Hour() == 02 && now.Minute() == 00 && now.Second() == 00){
     Disp.setBrightness(brightness);
-  }
+  }*/
 
   if(timer - sv > 5000){
     //RtcDateTime now = Rtc.GetDateTime();
