@@ -67,7 +67,7 @@ void drawDate() {
     } else {
       x = 0;
       fullScroll = 0; // Reset agar hitung ulang saat tanggal berubah
-      show = ANIM_NAME;
+      show = ANIM_TEXT1;
       Disp.drawLine(0, 0, 64, 0, 0);
       return;
     }
@@ -113,7 +113,7 @@ void drawName(){
  if (Tmr - lsRn > Speed) { 
   lsRn = Tmr;
   if (x < fullScroll) {++x; }
-  else {x = 0; counterName=1;show=ANIM_TEXT1; return;}
+  else {x = 0; counterName=1;show=ANIM_TEXT2; return;}
  
     //Marquee    jam yang tampil di bawah
   Disp.drawText(Disp.width() - x, 0, name); //runing teks diatas
@@ -153,7 +153,7 @@ void drawText1(){
  if (Tmr - lsRn > Speed) { 
   lsRn = Tmr;
   if (x < fullScroll) {++x; }
-  else {x = 0; Disp.drawLine(0,0,64,0,0); show=ANIM_TEXT2; return;}
+  else {x = 0; Disp.drawLine(0,0,64,0,0); show=ANIM_SHOLAT; return;}
         
   
   if (x<=6)                     { Disp.drawText(6,x-6,Buff); }
@@ -333,15 +333,15 @@ void drawJadwalSholat() {
 //  Disp.drawChar(20, 26 - y1, '0' + now.Second() % 10);
 
 // Tampilkan jam digital
-  fType(0);
-  Disp.drawChar(1, y1 - 12, '0' + now.Hour() / 10);
-  Disp.drawChar(7, y1 - 12, '0' + now.Hour() % 10);
+  fType(5);
+  Disp.drawChar(0, y1-17, '0' + now.Hour() / 10);
+  Disp.drawChar(7, y1-17, '0' + now.Hour() % 10);
 
 //  Disp.drawRect(12, y1 - 12, 13, y1 - 11, 1); //posisi y = 5
 //  Disp.drawRect(12, y1 - 9, 13, y1 - 8, 1); //posisi y = 8
   
-  Disp.drawChar(15, y1 - 12, '0' + now.Minute() / 10);
-  Disp.drawChar(21, y1 - 12, '0' + now.Minute() % 10);
+//  Disp.drawChar(13, y1 , '0' + now.Minute() / 10);
+//  Disp.drawChar(19, y1 , '0' + now.Minute() % 10);
 
   // Tampilkan teks jadwal sholat
   uint8_t shour = (uint8_t)stime;
