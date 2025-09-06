@@ -67,18 +67,18 @@ void drawDate() {
     } else {
       x = 0;
       fullScroll = 0; // Reset agar hitung ulang saat tanggal berubah
-      show = ANIM_TEXT1;
+      show = ANIM_TEXT2;
       Disp.drawLine(0, 0, 64, 0, 0);
       return;
     }
 
     // Gambar waktu
     if (x <= 6) {
-      Disp.drawText(6, x - 6, buff_time);
+      Disp.drawText(8, x - 6, buff_time);
     } else if (x >= (fullScroll - 6)) {
-      Disp.drawText(6, (fullScroll - x) - 6, buff_time);
+      Disp.drawText(8, (fullScroll - x) - 6, buff_time);
     } else {
-      Disp.drawText(6, 0, buff_time);
+      Disp.drawText(8, 0, buff_time);
     }
    
     // Gambar tanggal berjalan
@@ -113,7 +113,7 @@ void drawName(){
  if (Tmr - lsRn > Speed) { 
   lsRn = Tmr;
   if (x < fullScroll) {++x; }
-  else {x = 0; counterName=1;show=ANIM_TEXT2; return;}
+  else {x = 0; counterName=1;show=ANIM_TEXT1; return;}
  
     //Marquee    jam yang tampil di bawah
   Disp.drawText(Disp.width() - x, 0, name); //runing teks diatas
@@ -198,9 +198,9 @@ void drawText2(){
     //Marquee    jam yang tampil di bawah
   Disp.drawText(Disp.width() - x, 0, text2); //runing teks diatas
   //fType(0);
-  if (x<=6)                     { Disp.drawText(6,16-x,Buff);}
-  else if (x>=(fullScroll-6))   { Disp.drawText(6,16-(fullScroll-x),Buff); Disp.drawLine(0,15-(fullScroll-x),64,15-(fullScroll-x),0);}
-  else                          { Disp.drawText(6,9,Buff);}//posisi jamnya yang bawah
+  if (x<=6)                     { Disp.drawText(8,16-x,Buff);}
+  else if (x>=(fullScroll-6))   { Disp.drawText(8,16-(fullScroll-x),Buff); Disp.drawLine(0,15-(fullScroll-x),64,15-(fullScroll-x),0);}
+  else                          { Disp.drawText(8,9,Buff);}//posisi jamnya yang bawah
         
  }
 }
@@ -263,14 +263,14 @@ void drawJadwalSholat() {
 
     if (s1 == 0 && y1 < 17) {
       Disp.drawLine(26, y1, 26, y1, 1);//garis pemisah vertikal
-      Disp.drawLine(0, y1-12, 25, y1-12, 0);//garis untuk menghapus angka jam
+     // Disp.drawLine(0, y1-1, 27, y1-1, 0);//garis untuk menghapus angka jam
       y1++;
     } else if (s1 == 1 && y1 > 0) {
-//      Disp.drawLine(14, 25 - y1, 25, 25 - y1, 0); // menghapus detik
-//      Disp.drawLine(0, y1 - 2, 12, y1 - 2, 0);    // menghapus jam
-//      Disp.drawLine(14, y1 - 9, 24, y1 - 9, 0);   // menghapus menit
+      Disp.drawLine(14, 25 - y1, 25, 25 - y1, 0); // menghapus detik
+      Disp.drawLine(0, y1 - 2, 12, y1 - 2, 0);    // menghapus jam
+      Disp.drawLine(14, y1 - 9, 24, y1 - 9, 0);   // menghapus menit
       Disp.drawLine(26, y1, 26, y1, 0);//garis pemisah vertikal
-      Disp.drawLine(0, y1-5, 25, y1-5, 0);//garis untuk menghapus angka jam
+    //  Disp.drawLine(0, y1-1, 27, y1-1, 0);//garis untuk menghapus angka jam
       y1--;
     }
   }
@@ -278,13 +278,13 @@ void drawJadwalSholat() {
   // Saat y1 selesai muncul, mulai animasi jadwal
   if (y1 == 17 && s1 == 0) {
     run = true; 
-    if(now.Second() % 2 ){
-      Disp.drawRect(13, 6, 13, 7, 1); //posisi y = 6
-      Disp.drawRect(13, 9, 13, 10, 1); //posisi y = 9
+    /*if(now.Second() % 2 ){
+      Disp.drawRect(13, 4, 14, 5, 1); //posisi y = 6
+      Disp.drawRect(13, 11, 14, 12, 1); //posisi y = 9
     }else{
-      Disp.drawRect(13, 6, 13, 7, 0); //posisi y = 5
-      Disp.drawRect(13, 9, 13, 10, 0); //posisi y = 8
-    }
+      Disp.drawRect(13, 4, 14, 5, 0); //posisi y = 5
+      Disp.drawRect(13, 11, 14, 12, 0); //posisi y = 8
+    }*/
   }
 
   // Animasi gerakan teks (y)
@@ -295,7 +295,7 @@ void drawJadwalSholat() {
       y++;
     } else if (s == 1 && y > 0) {
       y--;
-      Disp.drawLine(27, 17 - y, 64, 17 - y, 0);
+      Disp.drawLine(29, 17 - y, 64, 17 - y, 0);
     }
   }
 
@@ -311,7 +311,7 @@ void drawJadwalSholat() {
   // Setelah animasi selesai
   if (y == 0 && s == 1) {
     s = 0;
-    Disp.drawLine(27, 0, 64, 0, 0);
+    Disp.drawLine(29, 0, 64, 0, 0);
     list = (list + 1) % 7;
     if (list == 0) {
       run = false;
@@ -321,27 +321,27 @@ void drawJadwalSholat() {
     }
   }
 
-//  // Tampilkan jam digital model -|
-//  fType(5);
-//  Disp.drawChar(0, y1 - 17, '0' + now.Hour() / 10);
-//  Disp.drawChar(6, y1 - 17, '0' + now.Hour() % 10);
-//
-//  fType(0);
-//  Disp.drawChar(14, y1 - 17, '0' + now.Minute() / 10);
-//  Disp.drawChar(20, y1 - 17, '0' + now.Minute() % 10);
-//  Disp.drawChar(14, 26 - y1, '0' + now.Second() / 10);
-//  Disp.drawChar(20, 26 - y1, '0' + now.Second() % 10);
+  // Tampilkan jam digital model -|
+  fType(5);
+  Disp.drawChar(0, y1 - 17, '0' + now.Hour() / 10);
+  Disp.drawChar(6, y1 - 17, '0' + now.Hour() % 10);
+
+  fType(0);
+  Disp.drawChar(14, y1 - 17, '0' + now.Minute() / 10);
+  Disp.drawChar(20, y1 - 17, '0' + now.Minute() % 10);
+  Disp.drawChar(14, 26 - y1, '0' + now.Second() / 10);
+  Disp.drawChar(20, 26 - y1, '0' + now.Second() % 10);
 
 // Tampilkan jam digital
-  fType(5);
-  Disp.drawChar(0, y1-17, '0' + now.Hour() / 10);
-  Disp.drawChar(7, y1-17, '0' + now.Hour() % 10);
-
-//  Disp.drawRect(12, y1 - 12, 13, y1 - 11, 1); //posisi y = 5
-//  Disp.drawRect(12, y1 - 9, 13, y1 - 8, 1); //posisi y = 8
-  
-//  Disp.drawChar(13, y1 , '0' + now.Minute() / 10);
-//  Disp.drawChar(19, y1 , '0' + now.Minute() % 10);
+//  fType(0);
+//  Disp.drawChar(0, y1-17, '0' + now.Hour() / 10);
+//  Disp.drawChar(7, y1-17, '0' + now.Hour() % 10);
+//
+////  Disp.drawRect(12, y1 - 12, 13, y1 - 11, 1); //posisi y = 5
+////  Disp.drawRect(12, y1 - 9, 13, y1 - 8, 1); //posisi y = 8
+//  
+//  Disp.drawChar(15, y1-17 , '0' + now.Minute() / 10);
+//  Disp.drawChar(22, y1-17 , '0' + now.Minute() % 10);
 
   // Tampilkan teks jadwal sholat
   uint8_t shour = (uint8_t)stime;
@@ -356,7 +356,7 @@ void drawJadwalSholat() {
   buf[5] = '\0';
 
   fType(0);
-  dwCtr(26, y - 9, jadwal[list]);
+  dwCtr(28, y - 9, jadwal[list]);
   dwCtr(28, 18 - y, buf);
 
   if (y1 == 0 && s1 == 1) {
@@ -393,9 +393,9 @@ void anim_JG()
     sprintf(BuffD,"%02d",now.Second());
 
     fType(5);
-    Disp.drawText(2,17-y,BuffJ);  //tampilkan jam 1
+    Disp.drawText(1,17-y,BuffJ);  //tampilkan jam 1
     Disp.drawText(25,y-17,BuffM);  //tampilkan menit
-    Disp.drawText(66-y,0,BuffD);  //tampilkan detik //x=50  67
+    Disp.drawText(67-y,0,BuffD);  //tampilkan detik //x=50  67
     
     if (y==17)
       {
@@ -444,9 +444,11 @@ void drawAzzan()
     
     if ((Tmr - lsRn) > 1500 && (ct > limit))
     {
-        show = ANIM_IQOMAH;
+        show = ANIM_CLOCK_BIG;
         Disp.clear();
         ct = 0;
+        sholatNow = -1;
+        adzan = false;
         Buzzer(0);
     }
 }
